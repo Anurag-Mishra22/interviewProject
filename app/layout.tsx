@@ -1,6 +1,9 @@
+import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import RightDescription from '@/components/RightDescription'
+import ImageSlider from '@/components/ImageSlider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +19,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="relative w-full h-screen flex flex-col">
+          <Navbar />
+          <div className="flex flex-grow">
+            {/* Left half with image background */}
+            <div className="w-1/2 bg-[#FDE3D9] relative">
+              <main className="h-full">{children}</main>
+            </div>
+            {/* Right half with components */}
+            <div className="w-1/2 bg-cover bg-center relative">
+              <ImageSlider />
+              <RightDescription />
+            </div>
+          </div>
+        </div>
+      </body>
     </html>
   )
 }
